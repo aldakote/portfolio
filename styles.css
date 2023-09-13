@@ -1,7 +1,7 @@
 :root {
     --font-color: antiquewhite;
-    --hover-font-color: #5a7b99;
-    --shadow-color: #201c29;
+    --hover-font-color: #816dca;
+    --shadow-color: #816dca;
 }
 
 ::selection {
@@ -44,6 +44,7 @@ header {
 
 .header-menu li {
     margin-bottom: 20px;
+    user-select: none;
 }
 
 .header-menu a {
@@ -102,21 +103,7 @@ header {
 #home-main > p {
     margin-top: 10px;
     font-size: 1.1rem;
-    user-select: none;
     display: inline-block;
-}
-
-#home-main > p::after {
-    display: block;
-    content: '';
-    border-bottom: solid 3px var(--hover-font-color);
-    transform: scaleX(0);
-    transform-origin: 0% 50%;
-    transition: transform 250ms ease-in-out;
-}
-
-#home-main > p:hover::after {
-    transform: scaleX(1);
 }
 
 header > img {
