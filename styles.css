@@ -1,0 +1,93 @@
+:root {
+    --font-color: black;
+    --hover-font-color: #d1aa75;
+    --shadow-color: #ad9574;
+}
+
+::selection {
+    background: antiquewhite;
+}
+
+@font-face {
+    font-family: 'ElegantFont';
+    src: url('adequate.extra-light.ttf') format('truetype');
+}
+
+html {
+    font-family: 'ElegantFont', sans-serif;
+    font-size: 30px;
+}
+
+body {
+    background-color: #faf9f6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-menu {
+    display: inline-block;
+    text-align: right;
+}
+
+.header-menu ul {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin-right: 20px;
+    list-style: none;
+}
+
+.header-menu li {
+    margin-bottom: 20px;
+}
+
+.header-menu a {
+    text-decoration: none;
+    color: var(--font-color);
+    font-size: 0.7rem;
+    transition: color 300ms;
+}
+
+.header-menu a:hover {
+    color: var(--hover-font-color);
+    transition: color 300ms;
+}
+
+.logo {
+    padding: 0;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.logo > span {
+    padding: 6px;
+}
+
+
+
+#home-main {
+    margin-top: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    flex-direction: column;
+}
+
+#home-main p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+header img {
+    max-width: 33%;
+    max-height: 100%;
+    margin-top: 50px;
+    box-shadow: 10px 10px 5px 7px var(--shadow-color);
+}
