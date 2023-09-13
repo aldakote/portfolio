@@ -1,11 +1,11 @@
 :root {
-    --font-color: black;
-    --hover-font-color: #d1aa75;
-    --shadow-color: #ad9574;
+    --font-color: antiquewhite;
+    --hover-font-color: #5a7b99;
+    --shadow-color: #201c29;
 }
 
 ::selection {
-    background: antiquewhite;
+    background: #5a7b99;
 }
 
 @font-face {
@@ -15,11 +15,13 @@
 
 html {
     font-family: 'ElegantFont', sans-serif;
-    font-size: 30px;
+    font-size: 34px;
+    color: var(--font-color);
+    scrollbar-color: #666 #201c29;
 }
 
 body {
-    background-color: #faf9f6;
+    background-color: #212224;
 }
 
 header {
@@ -48,12 +50,12 @@ header {
     text-decoration: none;
     color: var(--font-color);
     font-size: 0.7rem;
-    transition: color 300ms;
+    transition: color 250ms;
 }
 
 .header-menu a:hover {
     color: var(--hover-font-color);
-    transition: color 300ms;
+    transition: color 250ms;
 }
 
 .logo {
@@ -61,11 +63,28 @@ header {
     display: inline-block;
     margin-left: 20px;
     margin-top: 20px;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .logo > span {
     padding: 6px;
+}
+
+.logo > span::after {
+    display: block;
+    content: '';
+    border-bottom: solid 3px var(--hover-font-color);
+    transform: scaleX(0);
+    transform-origin: 0% 50%;
+    transition: transform 250ms ease-in-out;
+}
+
+.logo > span:hover::after {
+    transform: scaleX(1);
+}
+
+.logo > span:hover {
+    cursor: pointer;
 }
 
 
@@ -80,14 +99,30 @@ header {
     flex-direction: column;
 }
 
-#home-main p {
+#home-main > p {
     margin-top: 10px;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    user-select: none;
+    display: inline-block;
 }
 
-header img {
-    max-width: 33%;
-    max-height: 100%;
+#home-main > p::after {
+    display: block;
+    content: '';
+    border-bottom: solid 3px var(--hover-font-color);
+    transform: scaleX(0);
+    transform-origin: 0% 50%;
+    transition: transform 250ms ease-in-out;
+}
+
+#home-main > p:hover::after {
+    transform: scaleX(1);
+}
+
+header > img {
+    max-width: 36%;
+    height: auto;
+    user-select: none;
     margin-top: 50px;
-    box-shadow: 10px 10px 5px 7px var(--shadow-color);
+    box-shadow: 10px 10px var(--shadow-color);
 }
