@@ -63,15 +63,16 @@ header {
     user-select: none;
 }
 
-.header-menu a {
+.header-menu > nav > ul > li > span {
     text-decoration: none;
     color: var(--font-color);
     font-size: 0.7rem;
     transition: color 250ms;
 }
 
-.header-menu a:hover {
+.header-menu > nav > ul > li > span:hover {
     color: var(--hover-font-color);
+    cursor: pointer;
     transition: color 250ms;
 }
 
