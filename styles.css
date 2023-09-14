@@ -42,6 +42,21 @@ header {
     list-style: none;
 }
 
+/* Different animation times for the three menu items */
+.header-menu li:nth-child(1) {
+    position: relative;
+    animation: slide-right-to-left 0.5s normal;
+}
+.header-menu li:nth-child(2) {
+    position: relative;
+    animation: slide-right-to-left 1.2s normal;
+}
+.header-menu li:nth-child(3) {
+    position: relative;
+    animation: slide-right-to-left 1.5s normal;
+}
+
+
 .header-menu li {
     margin-bottom: 20px;
     user-select: none;
@@ -104,7 +119,7 @@ header {
     margin-top: 10px;
     font-size: 1.1rem;
     display: inline-block;
-    animation: fade-in 4s normal;
+    animation: fade-in 2.5s normal;
 }
 
 header > video {
@@ -116,11 +131,20 @@ header > video {
 }
 
 @keyframes fade-in {
-    from {
+    0% {
         opacity: 0;
     }
-
-    to {
+    100% {
         opacity: 1;
+    }
+
+}
+
+@keyframes slide-right-to-left {
+    0% {
+        right: -100px;
+    }
+    100% {
+        right: 0;
     }
 }
