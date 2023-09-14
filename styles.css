@@ -5,7 +5,7 @@
 }
 
 ::selection {
-    background: #5a7b99;
+    background: #3f3f40;
 }
 
 @font-face {
@@ -104,12 +104,23 @@ header {
     margin-top: 10px;
     font-size: 1.1rem;
     display: inline-block;
+    animation: fade-in 4s normal;
 }
 
-header > img {
+header > video {
     max-width: 36%;
     height: auto;
     user-select: none;
     margin-top: 50px;
     box-shadow: 10px 10px var(--shadow-color);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
