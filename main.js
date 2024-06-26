@@ -20,13 +20,13 @@ about_btn.addEventListener('click', () => {
 
 
 function show_selected_elements_for(name) {
-	home_elements.forEach((element) => {
-		element.style.display = (name === 'home') ? 'flex' : 'none';
-	});
-	portfolio_elements.forEach((element) => {
-		element.style.display = (name === 'portfolio') ? 'flex' : 'none';
-	});
-	about_elements.forEach((element) => {
-		element.style.display = (name === 'about') ? 'flex' : 'none';
-	});
+    home_elements.forEach((element) => {
+        element.style.display = (name === 'home') ? 'flex' : 'none';
+    });
+    portfolio_elements.forEach((element) => {
+        element.style.display = (name === 'portfolio') ? 'flex' : 'none';
+    });
+    about_elements.forEach((element) => {
+        element.style.display = (name === 'about') ? 'flex' : 'none';
+    });
 }
