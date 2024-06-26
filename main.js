@@ -20,35 +20,13 @@ about_btn.addEventListener('click', () => {
 
 
 function show_selected_elements_for(name) {
-    if (name === 'home') {
-        home_elements.forEach((element) => {
-            element.style.display = 'flex'
-        });
-        portfolio_elements.forEach((element) => {
-            element.style.display = 'none';
-        });
-        about_elements.forEach((element) => {
-            element.style.display = 'none';
-        });
-    } else if (name === 'portfolio') {
-        home_elements.forEach((element) => {
-            element.style.display = 'none'
-        });
-        portfolio_elements.forEach((element) => {
-            element.style.display = 'flex';
-        });
-        about_elements.forEach((element) => {
-            element.style.display = 'none';
-        });
-    } else {
-        home_elements.forEach((element) => {
-            element.style.display = 'none'
-        });
-        portfolio_elements.forEach((element) => {
-            element.style.display = 'none';
-        });
-        about_elements.forEach((element) => {
-            element.style.display = 'flex';
-        });
-    }
+	home_elements.forEach((element) => {
+		element.style.display = (name === 'home') ? 'flex' : 'none';
+	});
+	portfolio_elements.forEach((element) => {
+		element.style.display = (name === 'portfolio') ? 'flex' : 'none';
+	});
+	about_elements.forEach((element) => {
+		element.style.display = (name === 'about') ? 'flex' : 'none';
+	});
 }
