@@ -1,11 +1,13 @@
 :root {
-    --font-color: antiquewhite;
-    --hover-font-color: #816dca;
-    --shadow-color: #816dca;
+    --font-color: #272728;
+    --background-color: #faf9f6;
+    --light-green: #6dca9c;
+    --dark-green: #4e9170;
 }
 
 ::selection {
-    background: #3f3f40;
+    background: var(--dark-green);
+    color: var(--background-color);
 }
 
 @font-face {
@@ -17,11 +19,13 @@ html {
     font-family: 'ElegantFont', sans-serif;
     font-size: 34px;
     color: var(--font-color);
-    scrollbar-color: #666 #201c29;
+    scrollbar-color: var(--dark-green) #030303;
+	background-color: var(--background-color);
 }
 
 body {
-    background-color: #212224;
+    background-color: var(--background-color);
+	color: var(--font-color);
     overflow-x: hidden; /* For menu animation */
 }
 
@@ -71,7 +75,7 @@ header {
 }
 
 .header-menu > nav > ul > li > span:hover {
-    color: var(--hover-font-color);
+    color: var(--light-green);
     cursor: pointer;
     transition: color 250ms;
 }
@@ -91,7 +95,7 @@ header {
 .logo > span::after {
     display: block;
     content: '';
-    border-bottom: solid 3px var(--hover-font-color);
+    border-bottom: solid 3px var(--light-green);
     transform: scaleX(0);
     transform-origin: 0% 50%;
     transition: transform 250ms ease-in-out;
@@ -106,16 +110,22 @@ header {
     cursor: pointer;
 }
 
-
-
+/* -------- */
+/* Sections */
+/* -------- */
+/* ------------ */
+/* Home Section */
+/* ------------ */
 #home-main {
-    margin-top: 40px;
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
-    justify-items: center;
-    justify-self: center;
     flex-direction: column;
+    align-items: center;
 }
 
 #home-main > p {
@@ -125,14 +135,27 @@ header {
     animation: fade-in 2.5s normal;
 }
 
-header > video {
-    max-width: 36%;
+#home-img {
+    max-width: 28%;
     height: auto;
     user-select: none;
     margin-top: 50px;
-    box-shadow: 10px 10px var(--shadow-color);
+    box-shadow: 10px 10px var(--dark-green);
 }
 
+/* ----------------- */
+/* Portfolio Section */
+/* ----------------- */
+
+
+/* ---------------- */
+/* About me Section */
+/* ---------------- */
+
+
+/* ----------------- */
+/* Custom Animations */
+/* ----------------- */
 @keyframes slide-right-to-left {
     0% {
         right: -100px;
@@ -146,7 +169,7 @@ header > video {
     0% {
         display: block;
         content: '';
-        border-bottom: solid 3px var(--hover-font-color);
+        border-bottom: solid 3px var(--light-green);
         transform: scaleX(0);
         transform-origin: 50% 50%;
     }
