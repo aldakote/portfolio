@@ -80,7 +80,7 @@ header {
     transition: color 250ms;
 }
 
-.logo {
+#logo {
     padding: 0;
     display: inline-block;
     margin-left: 20px;
@@ -88,11 +88,12 @@ header {
     font-size: 0.8rem;
 }
 
-.logo > span {
+#logo > span {
     padding: 6px;
+    user-select: none;
 }
 
-.logo > span::after {
+#logo > span::after {
     display: block;
     content: '';
     border-bottom: solid 3px var(--light-green);
@@ -102,11 +103,11 @@ header {
     animation: bottom-line 1s normal;
 }
 
-.logo > span:hover::after {
+#logo > span:hover::after {
     transform: scaleX(1);
 }
 
-.logo > span:hover {
+#logo > span:hover {
     cursor: pointer;
 }
 

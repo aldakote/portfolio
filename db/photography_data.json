@@ -1,0 +1,14 @@
+[
+  {
+    "id": "896bb07c-c7bc-447c-860c-6d5944665000",
+    "title": "Photography 1",
+    "description": "A description that describes this image",
+    "extension": "jpeg"
+  },
+  {
+    "id": "24c18d04-4616-4b35-90b3-2c64ad0000d7",
+    "title": "Photography 2",
+    "description": null,
+    "extension": "jpeg"
+  }
+]
