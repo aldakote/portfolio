@@ -58,9 +58,6 @@ const about_elements = Array.from(document.getElementsByClassName('about'));
 
 show_selected_elements_for(PageSectionEnum.HOME);
 
-const db = new DB();
-load_all_images(db);
-
 /* Event Listeners */
 home_btn.addEventListener('click', () => {
     show_selected_elements_for(PageSectionEnum.HOME);
@@ -88,11 +85,4 @@ function show_selected_elements_for(name) {
     about_elements.forEach((element) => {
         element.style.display = (name === PageSectionEnum.ABOUT_ME) ? 'flex' : 'none';
     });
-}
-
-async function load_all_images(db) {
-    const photographyImageList = await db.getImagesForCategory(CategoryEnum.PHOTOGRAPHY);
-    const graphicDesignImageList = await db.getImagesForCategory(CategoryEnum.GRAPHIC_DESIGN);
-    console.log(photographyImageList);
-    console.log(graphicDesignImageList);
 }

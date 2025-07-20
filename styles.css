@@ -32,6 +32,8 @@ body {
 header {
     display: flex;
     justify-content: space-between;
+    position: relative;
+    z-index: 10;
 }
 
 .header-menu {
@@ -147,6 +149,40 @@ header {
 /* ----------------- */
 /* Portfolio Section */
 /* ----------------- */
+#portfolio-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+#portfolio-sections-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+#portfolio-photography-img, #portfolio-graphic-design-img {
+    flex: 1 1 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 5 / 8;
+    position: relative;
+    z-index: -1;
+    pointer-events: auto; /* keep clickable */
+    animation: fade-in 0.5s normal;
+}
+
+#portfolio-photography-img:hover, #portfolio-graphic-design-img:hover {
+     cursor: pointer;
+}
 
 
 /* ---------------- */
