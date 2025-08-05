@@ -15,29 +15,59 @@
     <header>
         <div id="logo">
             <span id="logo-span">ALDA KOTE</span>
+            <span id="logo-span-portfolio">ALDA KOTE</span>
         </div>
         <img id="home-img" class="home" src="images/home_img.jpg" alt="home-image"/>
         <div class="header-menu">
             <nav>
                 <ul>
-                    <li><span id="home-btn">HOME</span></li>
-                    <li><span id="portfolio-btn">PORTFOLIO</span></li>
-                    <li><span id="about-btn">ABOUT ME</span></li>
+                    <li class="list-item"><span id="home-btn">HOME</span></li>
+                    <li class="list-item"><span id="portfolio-btn">PORTFOLIO</span></li>
+                    <li class="list-item"><span id="about-btn">ABOUT ME</span></li>
+                    <li class="portfolio-list-item"><span id="home-portfolio-btn">HOME</span></li>
+                    <li class="portfolio-list-item"><span id="portfolio-portfolio-btn">PORTFOLIO</span></li>
+                    <li class="portfolio-list-item"><span id="about-portfolio-btn">ABOUT ME</span></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- HOME PAGE -->
+    <!-- HOME SECTION -->
     <div id="home-main" class="home">
         <p>BLURRING THE LINES BETWEEN THE REAL AND THE FAKE</p>
     </div>
 
-    <div id="portfolio-main" class="portfolio">
-        <div id="portfolio-sections-container">
-            <img id="portfolio-graphic-design-img" src="images/portfolio_graphic_design_img.jpg" alt="portfolio-graphic-design-image"/>
-            <img id="portfolio-photography-img" src="images/portfolio_photography_img.jpg" alt="portfolio-photography-image"/>
+    <!-- PORTFOLIO SECTION -->
+    <div class="portfolio">
+        <div id="photography-item" class="portfolio-item">
+            <img id="photography-img" src="images/photography/projects/[cover]_photography_and_projects.jpg" alt="portfolio-photography-image"/>
+            <div class="portfolio-caption">PHOTOGRAPHY</div>
         </div>
+        <div id="graphic-design-item" class="portfolio-item">
+            <img id="portfolio-graphic-design-img" src="images/graphic design/[cover]_graphic_design.jpg" alt="portfolio-graphic-design-image"/>
+            <div class="portfolio-caption">GRAPHIC DESIGN</div>
+        </div>
+    </div>
+
+    <!-- PORTFOLIO PHOTOGRAPHY SECTION -->
+    <div class="portfolio-photography">
+        <div id="projects-item" class="portfolio-item">
+            <img id="projects-item-img" src="images/photography/projects/[cover]_photography_and_projects.jpg" alt="portfolio-photography-image"/>
+            <div class="portfolio-caption">PROJECTS</div>
+        </div>
+        <div id="commercial-item" class="portfolio-item">
+            <img id="commercial-img" src="images/photography/commercial/[cover]_commercial.jpg" alt="portfolio-photography-image"/>
+            <div class="portfolio-caption">COMMERCIAL</div>
+        </div>
+        <div id="portraits-item" class="portfolio-item">
+            <img id="portraits-img" src="images/photography/portraits/[cover]_portrait.jpg" alt="portfolio-graphic-design-image"/>
+            <div class="portfolio-caption">PORTRAITS</div>
+        </div>
+    </div>
+
+    <!-- PORTFOLIO IMAGES SECTION -->
+    <div class="portfolio-images">
+        <ul></ul>
     </div>
     <script src="main.js"></script>
 </body>
