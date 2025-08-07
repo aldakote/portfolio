@@ -46,7 +46,13 @@ class DB {
             throw new Error('Error trying to connect with database');
         }
         const json = await response.json();
-        return json.map(res => new ImageInfoDto(res.id, category, res.title, res.description, res.extension, `./images/${res.id}.${res.extension}`));
+        return json.map(res => {
+            let imgSrc = `./images/photography/${category}/${res.id}.${res.extension}`;
+            if (category === CategoryEnum.GRAPHIC_DESIGN) {
+                imgSrc = `./images/${category}/${res.id}.${res.extension}`;
+            }
+            return new ImageInfoDto(res.id, category, res.title, res.description, res.extension, imgSrc);
+        });
     }
 }
 
@@ -57,12 +63,19 @@ const home_btn = document.getElementById('home-btn');
 const portfolio_btn = document.getElementById('portfolio-btn');
 const about_btn = document.getElementById('about-btn');
 const logo_span = document.getElementById('logo-span');
+
 const home_elements = Array.from(document.getElementsByClassName('home'));
 const portfolio_elements = Array.from(document.getElementsByClassName('portfolio'));
 const about_elements = Array.from(document.getElementsByClassName('about'));
 const portfolio_photography_elements = Array.from(document.getElementsByClassName('portfolio-photography'));
-const photography_item = document.getElementById("photography-item");
-const graphic_design_item = document.getElementById("graphic-design-item");
+const portfolio_images_elements = Array.from(document.getElementsByClassName('portfolio-images'));
+
+const photography_item = document.getElementById('photography-item');
+const graphic_design_item = document.getElementById('graphic-design-item');
+const projects_item = document.getElementById('projects-item');
+const commercial_item = document.getElementById('commercial-item');
+const portraits_item = document.getElementById('portraits-item');
+const portfolio_images_list = document.getElementById('portfolio-images-list');
 
 /* Event Listeners */
 home_btn.addEventListener('click', () => {
@@ -80,8 +93,17 @@ logo_span.addEventListener('click', () => {
 photography_item.addEventListener('click', () => {
     show_selected_elements_for(PageSectionEnum.PORTFOLIO_PHOTOGRAPHY);
 }, false);
-graphic_design_item.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.PORTFOLIO_IMAGES);
+graphic_design_item.addEventListener('click', async () => {
+    await show_portfolio_images_section_for_category(CategoryEnum.GRAPHIC_DESIGN);
+}, false);
+projects_item.addEventListener('click', async () => {
+    await show_portfolio_images_section_for_category(CategoryEnum.PROJECTS);
+}, false);
+commercial_item.addEventListener('click', async () => {
+    await show_portfolio_images_section_for_category(CategoryEnum.COMMERCIAL);
+}, false);
+portraits_item.addEventListener('click', async () => {
+    await show_portfolio_images_section_for_category(CategoryEnum.PORTRAITS);
 }, false);
 
 // Portfolio elements (colors and animation change when user is on this page, that's why we have different elements)
@@ -124,7 +146,10 @@ function show_selected_elements_for(pageSection) {
     });
     portfolio_photography_elements.forEach((element) => {
         element.style.display = (pageSection === PageSectionEnum.PORTFOLIO_PHOTOGRAPHY) ? 'flex' : 'none';
-    })
+    });
+    portfolio_images_elements.forEach((element) => {
+        element.style.display = (pageSection === PageSectionEnum.PORTFOLIO_IMAGES) ? 'flex' : 'none';
+    });
     handle_visibility_for_portfolio_elements(pageSection);
 }
 
@@ -138,8 +163,41 @@ function handle_visibility_for_portfolio_elements(pageSection) {
     logo_span_portfolio.style.display = PageSectionEnum.isPortfolioSection(pageSection) ? 'block' : 'none';
 }
 
-function show_portfolio_images_section_for_category(category) {
-    if (category === CategoryEnum.GRAPHIC_DESIGN) {
-        show_selected_elements_for(PageSectionEnum.PORTFOLIO_IMAGES);
+async function show_portfolio_images_section_for_category(category) {
+    clear_children(portfolio_images_list);
+    show_selected_elements_for(PageSectionEnum.PORTFOLIO_IMAGES);
+
+    const db = new DB();
+    const images = await db.getImagesForCategory(category);
+    images.forEach((imageInfoDto) => {
+        portfolio_images_list.appendChild(create_list_item(imageInfoDto));
+    });
+}
+
+function clear_children(element) {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
     }
+}
+
+function create_list_item(imageInfoDto) {
+    let listItemNode = document.createElement('li');
+    listItemNode.className = 'list-item-result';
+
+    let imgNode = document.createElement('img');
+    imgNode.src = imageInfoDto.imgSrc;
+    imgNode.alt = imageInfoDto.title;
+
+    let titleNode = document.createElement('span');
+    titleNode.className = 'list-item-result-title';
+    titleNode.innerText = imageInfoDto.title;
+
+    let descriptionNode = document.createElement('span');
+    descriptionNode.className = 'list-item-result-description';
+    descriptionNode.innerText = imageInfoDto.description;
+
+    listItemNode.appendChild(imgNode);
+    listItemNode.appendChild(titleNode);
+    listItemNode.appendChild(descriptionNode);
+    return listItemNode;
 }
