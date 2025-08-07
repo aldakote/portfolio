@@ -253,6 +253,7 @@ header {
     color: var(--background-color);
     background: rgba(0, 0, 0, 0.7);
     user-select: none;
+    font-size: 1.6rem;
 }
 
 #portfolio-images-blurred-background-img {
