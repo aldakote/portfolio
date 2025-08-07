@@ -47,7 +47,7 @@ class DB {
         }
         const json = await response.json();
         return json.map(res => {
-            let imgSrc = `./images/photography/${category}/${res.id}.${res.extension}`;
+            let imgSrc = `images/photography/${category}/${res.id}.${res.extension}`;
             if (category === CategoryEnum.GRAPHIC_DESIGN) {
                 imgSrc = `./images/${category}/${res.id}.${res.extension}`;
             }
