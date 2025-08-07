@@ -59,10 +59,18 @@ class DB {
 /* ---- */
 /* Main */
 /* ---- */
+const categoryImageSrcMap = new Map();
+categoryImageSrcMap.set(CategoryEnum.GRAPHIC_DESIGN, 'images/graphic_design/[cover]_graphic_design.jpg');
+categoryImageSrcMap.set(CategoryEnum.COMMERCIAL, 'images/photography/commercial/[cover]_commercial.jpg');
+categoryImageSrcMap.set(CategoryEnum.PORTRAITS, 'images/photography/portraits/[cover]_portrait.jpg');
+categoryImageSrcMap.set(CategoryEnum.PROJECTS, 'images/photography/projects/[cover]_photography_and_projects.jpg');
+
 const home_btn = document.getElementById('home-btn');
 const portfolio_btn = document.getElementById('portfolio-btn');
 const about_btn = document.getElementById('about-btn');
 const logo_span = document.getElementById('logo-span');
+const portfolio_images_category_h1 = document.getElementById('portfolio-images-category-h1');
+const portfolio_images_blurred_background_img = document.getElementById('portfolio-images-blurred-background-img')
 
 const home_elements = Array.from(document.getElementsByClassName('home'));
 const portfolio_elements = Array.from(document.getElementsByClassName('portfolio'));
@@ -106,27 +114,8 @@ portraits_item.addEventListener('click', async () => {
     await show_portfolio_images_section_for_category(CategoryEnum.PORTRAITS);
 }, false);
 
-// Portfolio elements (colors and animation change when user is on this page, that's why we have different elements)
-const home_portfolio_btn = document.getElementById('home-portfolio-btn');
-const portfolio_portfolio_btn = document.getElementById('portfolio-portfolio-btn');
-const about_portfolio_btn = document.getElementById('about-portfolio-btn');
-const logo_span_portfolio = document.getElementById('logo-span-portfolio');
 const list_items = document.getElementsByClassName('list-item');
 const portfolio_list_items = document.getElementsByClassName('portfolio-list-item');
-
-// Portfolio elements event listeners
-home_portfolio_btn.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.HOME);
-}, false);
-portfolio_portfolio_btn.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.PORTFOLIO);
-}, false);
-about_portfolio_btn.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.ABOUT_ME);
-}, false);
-logo_span_portfolio.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.HOME);
-}, false);
 
 /* Show home page */
 show_selected_elements_for(PageSectionEnum.HOME);
@@ -150,21 +139,13 @@ function show_selected_elements_for(pageSection) {
     portfolio_images_elements.forEach((element) => {
         element.style.display = (pageSection === PageSectionEnum.PORTFOLIO_IMAGES) ? 'flex' : 'none';
     });
-    handle_visibility_for_portfolio_elements(pageSection);
-}
-
-function handle_visibility_for_portfolio_elements(pageSection) {
-    for (let i = 0; i < portfolio_list_items.length; i++) {
-        portfolio_list_items[i].style.display = PageSectionEnum.isPortfolioSection(pageSection) ? 'flex' : 'none';
-        list_items[i].style.display = PageSectionEnum.isPortfolioSection(pageSection) ? 'none' : 'flex';
-        list_items[i].style.animation = 'none';
-    }
-    logo_span.style.display = PageSectionEnum.isPortfolioSection(pageSection) ? 'none' : 'block';
-    logo_span_portfolio.style.display = PageSectionEnum.isPortfolioSection(pageSection) ? 'block' : 'none';
+    change_header_styles(pageSection);
 }
 
 async function show_portfolio_images_section_for_category(category) {
     clear_children(portfolio_images_list);
+    portfolio_images_category_h1.innerText = category.toUpperCase().replace('_', ' ');
+    portfolio_images_blurred_background_img.src = categoryImageSrcMap.get(category);
     show_selected_elements_for(PageSectionEnum.PORTFOLIO_IMAGES);
 
     const db = new DB();
@@ -200,4 +181,77 @@ function create_list_item(imageInfoDto) {
     listItemNode.appendChild(titleNode);
     listItemNode.appendChild(descriptionNode);
     return listItemNode;
+}
+
+function change_header_styles(pageSection) {
+    const sheet = document.styleSheets[0];
+    for (const rule of sheet.cssRules) {
+        // List font color
+        if (rule.selectorText === '.header-menu > nav > ul > li > span') {
+            switch (pageSection) {
+                case PageSectionEnum.HOME:
+                case PageSectionEnum.ABOUT_ME:
+                    rule.style.color = 'var(--font-color)';
+                    break;
+                case PageSectionEnum.PORTFOLIO:
+                case PageSectionEnum.PORTFOLIO_PHOTOGRAPHY:
+                case PageSectionEnum.PORTFOLIO_IMAGES:
+                    rule.style.color = 'var(--background-color)';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // List hover color
+        if (rule.selectorText === '.header-menu > nav > ul > li > span:hover') {
+            switch (pageSection) {
+                case PageSectionEnum.HOME:
+                case PageSectionEnum.ABOUT_ME:
+                    rule.style.color = 'var(--light-green)';
+                    break;
+                case PageSectionEnum.PORTFOLIO:
+                case PageSectionEnum.PORTFOLIO_PHOTOGRAPHY:
+                case PageSectionEnum.PORTFOLIO_IMAGES:
+                    rule.style.color = 'var(--dark-cyan)';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // Logo font color
+        if (rule.selectorText === '#logo') {
+            switch (pageSection) {
+                case PageSectionEnum.HOME:
+                case PageSectionEnum.ABOUT_ME:
+                    rule.style.color = 'var(--font-color)';
+                    break;
+                case PageSectionEnum.PORTFOLIO:
+                case PageSectionEnum.PORTFOLIO_PHOTOGRAPHY:
+                case PageSectionEnum.PORTFOLIO_IMAGES:
+                    rule.style.color = 'var(--background-color)';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // Logo hover animation color
+        if (rule.selectorText === '#logo-span::after') {
+            switch (pageSection) {
+                case PageSectionEnum.HOME:
+                case PageSectionEnum.ABOUT_ME:
+                    rule.style.borderBottom = 'solid 3px var(--light-green)';
+                    break;
+                case PageSectionEnum.PORTFOLIO:
+                case PageSectionEnum.PORTFOLIO_PHOTOGRAPHY:
+                case PageSectionEnum.PORTFOLIO_IMAGES:
+                    rule.style.borderBottom = 'solid 3px var(--dark-cyan)';
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

@@ -21,21 +21,38 @@ html {
     font-family: 'ElegantFont', sans-serif;
     font-size: 34px;
     color: var(--font-color);
-    scrollbar-color: var(--dark-green) #030303;
+    scrollbar-color: var(--background-color) #030303;
 	background-color: var(--background-color);
 }
 
 body {
+    background-color: transparent;
+    color: var(--font-color);
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-color: var(--background-color);
-	color: var(--font-color);
-    overflow-x: hidden; /* For menu animation */
+    opacity: 0.001;
+    z-index: -998;
+    pointer-events: none;
 }
 
 header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
-    position: relative;
-    z-index: 10;
+    padding: 10px 0;
+    background: transparent;
 }
 
 .header-menu {
@@ -89,6 +106,7 @@ header {
     margin-left: 20px;
     margin-top: 20px;
     font-size: 0.8rem;
+    color: var(--font-color);
 }
 
 #logo > span {
@@ -170,15 +188,6 @@ header {
     animation: fade-in 0.5s normal;
 }
 
-#logo-span-portfolio::after {
-    display: block;
-    content: '';
-    border-bottom: solid 3px var(--dark-cyan);
-    transform: scaleX(0);
-    transform-origin: 0% 50%;
-    transition: transform 250ms ease-in-out;
-}
-
 .portfolio-item {
     position: relative;
     flex: 1 1 50%;
@@ -216,21 +225,104 @@ header {
     transition: color 250ms;
 }
 
-#home-portfolio-btn:hover, #portfolio-portfolio-btn:hover, #about-portfolio-btn:hover {
-    color: var(--psychedelic-pink);
-    cursor: pointer;
-    transition: color 250ms;
-}
-
-#logo-span-portfolio {
-    text-decoration: none;
-    color: var(--background-color);
-}
-
 /* ---------------- */
 /* About me Section */
 /* ---------------- */
 
+
+/* ------------------------ */
+/* Portfolio Images Section */
+/* ------------------------ */
+#portfolio-images-section {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    z-index: 0;
+}
+
+#portfolio-images-category-h1 {
+    display: block;
+    width: 100vw;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    align-self: center;
+    text-align: center;
+    color: var(--background-color);
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#portfolio-images-blurred-background-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    /*filter: blur(5px);*/
+    z-index: -999;
+    user-select: none;
+    pointer-events: none;
+}
+
+#portfolio-images-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.portfolio,
+.portfolio-photography,
+#portfolio-images-section {
+    background-color: transparent;
+}
+
+.list-item-result {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.list-item-result:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.list-item-result img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.list-item-result-title {
+    font-size: 0.65rem;
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--font-color);
+    text-align: center;
+    padding: 0 10px;
+}
+
+.list-item-result-description {
+    font-size: 0.5rem;
+    margin: 5px 0 12px;
+    color: var(--font-color);
+    text-align: center;
+    padding: 0 10px;
+}
 
 /* ----------------- */
 /* Custom Animations */
