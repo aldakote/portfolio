@@ -169,9 +169,8 @@ function create_list_item(imageInfoDto) {
     imgNode.src = imageInfoDto.imgSrc;
     imgNode.alt = imageInfoDto.title;
 
-    // Click event for overlay
     imgNode.addEventListener('click', () => {
-        openImageOverlay(imageInfoDto.imgSrc);
+        openImageOverlay(imageInfoDto);
     });
 
     listItemNode.appendChild(imgNode);
@@ -255,15 +254,25 @@ const overlay = document.createElement('div');
 overlay.id = 'image-overlay';
 overlay.innerHTML = `
     <span id="image-overlay-close">&times;</span>
-    <img src="" alt="overlay-image"/>
+    <div id="overlay-content">
+        <img src="" alt="overlay-image"/>
+        <div id="overlay-text">
+            <h2 id="overlay-title"></h2>
+            <p id="overlay-description"></p>
+        </div>
+    </div>
 `;
 document.body.appendChild(overlay);
 
 const overlayImg = overlay.querySelector('img');
+const overlayTitle = document.getElementById('overlay-title');
+const overlayDescription = document.getElementById('overlay-description');
 const overlayClose = document.getElementById('image-overlay-close');
 
-function openImageOverlay(src) {
-    overlayImg.src = src;
+function openImageOverlay(imageInfo) {
+    overlayImg.src = imageInfo.imgSrc;
+    overlayTitle.textContent = imageInfo.title;
+    overlayDescription.textContent = imageInfo.description;
     overlay.style.display = 'flex';
 }
 
@@ -272,7 +281,6 @@ overlayClose.addEventListener('click', () => {
     overlayImg.src = '';
 });
 
-// Optional: close on background click
 overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
         overlay.style.display = 'none';

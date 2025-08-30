@@ -5,6 +5,8 @@
     --dark-green: #4e9170;
     --dark-cyan: #069db6;
     --psychedelic-pink: #ff39aa;
+    --dark-blue: #006fbe;
+    --complementary-dark-blue: #538d00;
 }
 
 ::selection {
@@ -158,9 +160,12 @@ header {
 }
 
 #home-img {
-    max-width: 28%;
+    max-width: 25%;
     height: auto;
     user-select: none;
+}
+
+#home-img {
     margin-top: 50px;
     box-shadow: 10px 10px var(--dark-green);
 }
@@ -229,6 +234,53 @@ header {
 /* ---------------- */
 /* About me Section */
 /* ---------------- */
+.about {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.about > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.about p {
+    font-size: 0.7rem;
+}
+
+#about-img {
+    height: auto;
+    max-height: 100vh;
+    width: auto;
+    object-fit: contain;
+    box-shadow: 10px 10px var(--dark-blue);
+}
+
+#about-p1 {
+    animation: fade-in 0.5s normal;
+}
+
+#about-p2 {
+    animation: fade-in 2s normal;
+}
+
+#about-p3 {
+    animation: fade-in 4s normal;
+}
+
+#about-p4 {
+    animation: fade-in 6s normal;
+}
 
 
 /* ------------------------ */
@@ -264,7 +316,6 @@ header {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    /*filter: blur(5px);*/
     z-index: -999;
     user-select: none;
     pointer-events: none;
@@ -328,29 +379,42 @@ header {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(31, 31, 31, 0.87);
+    background: rgba(0,0,0,0.9);
     display: none;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 999;
 }
 
-#image-overlay img {
+#overlay-content {
     max-width: 90%;
     max-height: 90%;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Close Button */
-#image-overlay-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-    user-select: none;
+#overlay-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 10px;
+}
+
+#overlay-text {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--background-color);
+}
+
+#overlay-text h2 {
+    margin: 0.5rem 0 0.3rem 0;
+    font-size: 1.5rem;
+}
+
+#overlay-text p {
+    margin: 0;
+    font-size: 1rem;
 }
 
 /* ----------------- */
