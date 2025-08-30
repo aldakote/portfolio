@@ -168,13 +168,14 @@ header {
 /* ----------------- */
 /* Portfolio Section */
 /* ----------------- */
-.portfolio, .portfolio-photography {
-    position: absolute;
+.portfolio,
+.portfolio-photography {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .portfolio-item img {
@@ -237,9 +238,9 @@ header {
     display: flex;
     position: relative;
     flex-direction: column;
-    height: 100vh;
-    overflow-y: auto;
-    padding: 20px;
+    min-height: 100vh;
+    overflow-y: visible;
+    padding: 0;
     z-index: 0;
 }
 
@@ -271,13 +272,12 @@ header {
 
 #portfolio-images-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
     list-style: none;
     padding: 0;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1200px;
+    margin: 0;
+    width: 100vw;
 }
 
 .portfolio,
@@ -287,26 +287,22 @@ header {
 }
 
 .list-item-result {
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.2s ease-in-out;
-}
-
-.list-item-result:hover {
-    transform: scale(1.02);
     cursor: pointer;
 }
 
 .list-item-result img {
     width: 100%;
-    height: 260px;
+    height: 100vh;
     object-fit: cover;
     display: block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.list-item-result:hover img {
+    transform: scale(1.03);
 }
 
 .list-item-result-title {
@@ -324,6 +320,37 @@ header {
     color: var(--font-color);
     text-align: center;
     padding: 0 10px;
+}
+
+#image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(31, 31, 31, 0.87);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+#image-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+/* Close Button */
+#image-overlay-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    user-select: none;
 }
 
 /* ----------------- */

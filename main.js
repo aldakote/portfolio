@@ -169,17 +169,12 @@ function create_list_item(imageInfoDto) {
     imgNode.src = imageInfoDto.imgSrc;
     imgNode.alt = imageInfoDto.title;
 
-    let titleNode = document.createElement('span');
-    titleNode.className = 'list-item-result-title';
-    titleNode.innerText = imageInfoDto.title;
-
-    let descriptionNode = document.createElement('span');
-    descriptionNode.className = 'list-item-result-description';
-    descriptionNode.innerText = imageInfoDto.description;
+    // Click event for overlay
+    imgNode.addEventListener('click', () => {
+        openImageOverlay(imageInfoDto.imgSrc);
+    });
 
     listItemNode.appendChild(imgNode);
-    listItemNode.appendChild(titleNode);
-    listItemNode.appendChild(descriptionNode);
     return listItemNode;
 }
 
@@ -255,3 +250,32 @@ function change_header_styles(pageSection) {
         }
     }
 }
+
+const overlay = document.createElement('div');
+overlay.id = 'image-overlay';
+overlay.innerHTML = `
+    <span id="image-overlay-close">&times;</span>
+    <img src="" alt="overlay-image"/>
+`;
+document.body.appendChild(overlay);
+
+const overlayImg = overlay.querySelector('img');
+const overlayClose = document.getElementById('image-overlay-close');
+
+function openImageOverlay(src) {
+    overlayImg.src = src;
+    overlay.style.display = 'flex';
+}
+
+overlayClose.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    overlayImg.src = '';
+});
+
+// Optional: close on background click
+overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+        overlay.style.display = 'none';
+        overlayImg.src = '';
+    }
+});
