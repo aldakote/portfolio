@@ -1,98 +1,114 @@
 [
   {
-    "extension": "jpg",
     "description": "Album Cover Inspiration",
+    "extension": "jpg",
     "id": "Livadi-2020-page-001",
+    "position": 0,
     "title": "The New Abnormal"
   },
   {
-    "extension": "jpg",
     "description": "Album Cover Inspiration",
+    "extension": "jpg",
     "id": "Pelion-2020-page-001",
+    "position": 1,
     "title": "Soft Sunny Afternoon"
   },
   {
-    "extension": "jpg",
     "description": "Album Cover Inspiration",
+    "extension": "jpg",
     "id": "WATERMELON SUGAR-page-001",
+    "position": 2,
     "title": "Watermelon Sugar"
   },
   {
-    "extension": "jpg",
     "description": "Zoe",
+    "extension": "jpg",
     "id": "cage1",
+    "position": 3,
     "title": "Cage of Flesh"
   },
   {
-    "extension": "jpg",
     "description": "Skating Project",
+    "extension": "jpg",
     "id": "concrete3",
+    "position": 4,
     "title": "Concrete Waves"
   },
   {
-    "extension": "jpg",
     "description": "2022",
+    "extension": "jpg",
     "id": "cryy2y",
+    "position": 5,
     "title": "self-portrait"
   },
   {
     "extension": "jpg",
     "description": "Untitled",
     "id": "df",
+    "position": 6,
     "title": "Deepthroating Flowers"
   },
   {
     "extension": "jpg",
     "description": "Untitled",
     "id": "df2",
+    "position": 7,
     "title": "Deepthroating Flowers"
   },
   {
     "extension": "jpg",
     "description": "Untitled",
     "id": "df3",
+    "position": 8,
     "title": "Deepthroating Flowers"
   },
   {
     "extension": "jpg",
     "description": "Poster, part of Programming & Curation for Utrecht University",
     "id": "do you know who you are",
+    "position": 9,
     "title": "do you know who you are?"
   },
   {
     "extension": "jpg",
     "description": "2023",
     "id": "precover",
+    "position": 10,
     "title": "i was never here"
   },
   {
     "extension": "jpg",
     "description": "inspired by THE 1975",
     "id": "pressure 1",
+    "position": 11,
     "title": "Change in Pressure"
   },
   {
     "extension": "jpg",
     "description": "inspired by THE 1975",
     "id": "ugh2liquifyvibr",
+    "position": 12,
     "title": "UGH!"
   },
   {
     "extension": "jpg",
     "description": "Photo Booklet Cover",
     "id": "b8ae01b5-3234-46c3-a0f1-e9cd821f6f4f",
+    "position": 13,
     "title": "It's Balkan Girl Summer"
   },
   {
     "extension": "jpg",
     "description": "self-portrait, 2025",
     "id": "852062c2-6134-46f4-88ff-500c9cf46e72",
+    "position": 14,
     "title": "HEAT"
   },
   {
-    "description": "Thasos, Greece",
     "extension": "jpg",
+    "description": "Thasos, Greece",
     "id": "949cc987-12bd-41c5-aa16-1ff91a54d49e",
+    "position": 15,
     "title": "TAN"
   }
 ]

@@ -28,14 +28,16 @@ class ImageInfoDto {
     description;    // string
     extension;      // string
     imgSrc;         // string
+    position;       // int
 
-    constructor(id, category, title, description, extension, imgSrc) {
+    constructor(id, category, title, description, extension, imgSrc, position) {
         this.id = id;
         this.category = category;
         this.title = title;
         this.description = description;
         this.extension = extension;
         this.imgSrc = imgSrc;
+        this.position = position;
     }
 }
 
@@ -51,8 +53,8 @@ class DB {
             if (category === CategoryEnum.GRAPHIC_DESIGN) {
                 imgSrc = `./images/${category}/${res.id}.${res.extension}`;
             }
-            return new ImageInfoDto(res.id, category, res.title, res.description, res.extension, imgSrc);
-        });
+            return new ImageInfoDto(res.id, category, res.title, res.description, res.extension, imgSrc, res.position);
+        }).sort((a, b) => a.position - b.position);
     }
 }
 

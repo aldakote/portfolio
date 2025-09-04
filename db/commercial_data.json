@@ -1,68 +1,79 @@
 [
   {
-    "extension": "jpg",
     "description": "Skating T-shirt Project",
+    "extension": "jpg",
     "id": "IMG_2745",
+    "position": 0,
     "title": "Crackhead Energy"
   },
   {
     "extension": "jpg",
     "description": "Skating T-shirt Project",
     "id": "IMG_2752",
+    "position": 1,
     "title": "Crackhead Energy"
   },
   {
     "extension": "jpg",
     "description": "2017",
     "id": "_MG_0107",
+    "position": 2,
     "title": "Eleni Kyriakidou's project for the @workef 's Competition"
   },
   {
     "extension": "jpg",
     "description": "Fashion & Make-up Project",
     "id": "_MG_0461",
+    "position": 3,
     "title": "Eleni Kydiakidou's Make-up & Styling"
   },
   {
     "extension": "jpg",
     "description": "Photography & Styling",
     "id": "_MG_1752",
+    "position": 4,
     "title": "Lily's Crochet Project"
   },
   {
     "extension": "jpg",
     "description": "Photography & Styling",
     "id": "_MG_6820",
+    "position": 5,
     "title": "Heksher Clothing"
   },
   {
     "extension": "jpg",
     "description": "Photography & Styling",
     "id": "_MG_6845",
+    "position": 6,
     "title": "Heksher Clothing"
   },
   {
     "extension": "jpg",
     "description": "Photography & Styling",
     "id": "_MG_6899",
+    "position": 7,
     "title": "Heksher Clothing"
   },
   {
     "extension": "jpg",
     "description": "Photography & Styling",
     "id": "_MG_6903",
+    "position": 8,
     "title": "Heksher Clothing"
   },
   {
     "extension": "jpg",
     "description": "Fashion Project",
     "id": "4a205bc0-6fa0-48b3-bd53-7bf5de5dc2bb",
+    "position": 9,
     "title": "Nocturnal Models"
   },
   {
     "extension": "jpg",
     "description": "Fashion Project",
     "id": "c5cbcb0b-60d1-4e59-a00e-0e7372985294",
+    "position": 10,
     "title": "Nocturnal Models"
   }
 ]
