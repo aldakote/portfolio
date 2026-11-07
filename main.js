@@ -67,6 +67,7 @@ categoryImageSrcMap.set(CategoryEnum.COMMERCIAL, 'images/photography/commercial/
 categoryImageSrcMap.set(CategoryEnum.PORTRAITS, 'images/photography/portraits/[cover]_portrait.jpg');
 categoryImageSrcMap.set(CategoryEnum.PROJECTS, 'images/photography/projects/[cover]_photography_and_projects.jpg');
 
+const header_el = document.querySelector('header');
 const home_btn = document.getElementById('home-btn');
 const portfolio_btn = document.getElementById('portfolio-btn');
 const about_btn = document.getElementById('about-btn');
@@ -89,38 +90,80 @@ const portfolio_images_list = document.getElementById('portfolio-images-list');
 
 /* Event Listeners */
 home_btn.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.HOME);
+    route('#home', true);
 }, false);
 portfolio_btn.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.PORTFOLIO);
+    route('#portfolio', true);
 }, false);
 about_btn.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.ABOUT_ME);
+    route('#about', true);
 }, false);
 logo_span.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.HOME);
+    route('#home', true);
 }, false);
 photography_item.addEventListener('click', () => {
-    show_selected_elements_for(PageSectionEnum.PORTFOLIO_PHOTOGRAPHY);
+    route('#portfolio/photography', true);
 }, false);
-graphic_design_item.addEventListener('click', async () => {
-    await show_portfolio_images_section_for_category(CategoryEnum.GRAPHIC_DESIGN);
+graphic_design_item.addEventListener('click', () => {
+    route('#portfolio/graphic_design', true);
 }, false);
-projects_item.addEventListener('click', async () => {
-    await show_portfolio_images_section_for_category(CategoryEnum.PROJECTS);
+projects_item.addEventListener('click', () => {
+    route('#portfolio/photography/projects', true);
 }, false);
-commercial_item.addEventListener('click', async () => {
-    await show_portfolio_images_section_for_category(CategoryEnum.COMMERCIAL);
+commercial_item.addEventListener('click', () => {
+    route('#portfolio/photography/commercial', true);
 }, false);
-portraits_item.addEventListener('click', async () => {
-    await show_portfolio_images_section_for_category(CategoryEnum.PORTRAITS);
+portraits_item.addEventListener('click', () => {
+    route('#portfolio/photography/portraits', true);
 }, false);
 
 const list_items = document.getElementsByClassName('list-item');
 const portfolio_list_items = document.getElementsByClassName('portfolio-list-item');
 
-/* Show home page */
-show_selected_elements_for(PageSectionEnum.HOME);
+/* Routing (enables browser back/forward navigation) */
+async function route(hash, push) {
+    hash = hash || '#home';
+    const parts = hash.replace('#', '').split('/').filter(Boolean);
+
+    if (parts[0] === 'about') {
+        show_selected_elements_for(PageSectionEnum.ABOUT_ME);
+    } else if (parts[0] === 'portfolio' && parts[1] === 'photography' && parts[2]) {
+        await show_portfolio_images_section_for_category(parts[2]);
+    } else if (parts[0] === 'portfolio' && parts[1] === 'photography') {
+        show_selected_elements_for(PageSectionEnum.PORTFOLIO_PHOTOGRAPHY);
+    } else if (parts[0] === 'portfolio' && parts[1]) {
+        await show_portfolio_images_section_for_category(parts[1]);
+    } else if (parts[0] === 'portfolio') {
+        show_selected_elements_for(PageSectionEnum.PORTFOLIO);
+    } else {
+        show_selected_elements_for(PageSectionEnum.HOME);
+    }
+
+    if (push) {
+        history.pushState(null, '', hash);
+    }
+}
+
+window.addEventListener('popstate', () => {
+    route(location.hash, false);
+});
+
+/* Show initial page based on current URL */
+route(location.hash, false);
+
+/* Mobile swipe-category dot indicators */
+function setup_scroll_dots(containerSelector) {
+    const container = document.querySelector(containerSelector);
+    const dotsEl = container ? container.querySelector('.scroll-dots') : null;
+    if (!container || !dotsEl) return;
+    const dots = Array.from(dotsEl.children);
+    container.addEventListener('scroll', () => {
+        const index = Math.round(container.scrollLeft / container.clientWidth);
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    }, { passive: true });
+}
+setup_scroll_dots('.portfolio');
+setup_scroll_dots('.portfolio-photography');
 
 /* -------------------- */
 /* Function Definitions */
@@ -141,7 +184,10 @@ function show_selected_elements_for(pageSection) {
     portfolio_images_elements.forEach((element) => {
         element.style.display = (pageSection === PageSectionEnum.PORTFOLIO_IMAGES) ? 'flex' : 'none';
     });
-    change_header_styles(pageSection);
+    const useLightHeader = pageSection === PageSectionEnum.PORTFOLIO
+        || pageSection === PageSectionEnum.PORTFOLIO_PHOTOGRAPHY
+        || pageSection === PageSectionEnum.PORTFOLIO_IMAGES;
+    header_el.classList.toggle('light-header', useLightHeader);
 }
 
 async function show_portfolio_images_section_for_category(category) {
@@ -177,79 +223,6 @@ function create_list_item(imageInfoDto) {
 
     listItemNode.appendChild(imgNode);
     return listItemNode;
-}
-
-function change_header_styles(pageSection) {
-    const sheet = document.styleSheets[0];
-    for (const rule of sheet.cssRules) {
-        // List font color
-        if (rule.selectorText === '.header-menu > nav > ul > li > span') {
-            switch (pageSection) {
-                case PageSectionEnum.HOME:
-                case PageSectionEnum.ABOUT_ME:
-                    rule.style.color = 'var(--font-color)';
-                    break;
-                case PageSectionEnum.PORTFOLIO:
-                case PageSectionEnum.PORTFOLIO_PHOTOGRAPHY:
-                case PageSectionEnum.PORTFOLIO_IMAGES:
-                    rule.style.color = 'var(--background-color)';
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        // List hover color
-        if (rule.selectorText === '.header-menu > nav > ul > li > span:hover') {
-            switch (pageSection) {
-                case PageSectionEnum.HOME:
-                case PageSectionEnum.ABOUT_ME:
-                    rule.style.color = 'var(--light-green)';
-                    break;
-                case PageSectionEnum.PORTFOLIO:
-                case PageSectionEnum.PORTFOLIO_PHOTOGRAPHY:
-                case PageSectionEnum.PORTFOLIO_IMAGES:
-                    rule.style.color = 'var(--dark-cyan)';
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        // Logo font color
-        if (rule.selectorText === '#logo') {
-            switch (pageSection) {
-                case PageSectionEnum.HOME:
-                case PageSectionEnum.ABOUT_ME:
-                    rule.style.color = 'var(--font-color)';
-                    break;
-                case PageSectionEnum.PORTFOLIO:
-                case PageSectionEnum.PORTFOLIO_PHOTOGRAPHY:
-                case PageSectionEnum.PORTFOLIO_IMAGES:
-                    rule.style.color = 'var(--background-color)';
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        // Logo hover animation color
-        if (rule.selectorText === '#logo-span::after') {
-            switch (pageSection) {
-                case PageSectionEnum.HOME:
-                case PageSectionEnum.ABOUT_ME:
-                    rule.style.borderBottom = 'solid 3px var(--light-green)';
-                    break;
-                case PageSectionEnum.PORTFOLIO:
-                case PageSectionEnum.PORTFOLIO_PHOTOGRAPHY:
-                case PageSectionEnum.PORTFOLIO_IMAGES:
-                    rule.style.borderBottom = 'solid 3px var(--dark-cyan)';
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
 }
 
 const overlay = document.createElement('div');

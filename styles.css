@@ -23,13 +23,25 @@ html {
     font-family: 'ElegantFont', sans-serif;
     font-size: 34px;
     color: var(--font-color);
-    scrollbar-color: var(--background-color) #030303;
+    scrollbar-color: #cfccc3 var(--background-color);
+    scrollbar-width: thin;
 	background-color: var(--background-color);
 }
 
 body {
     background-color: transparent;
     color: var(--font-color);
+    overflow-x: hidden;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
     overflow-x: hidden;
     position: relative;
 }
@@ -48,13 +60,12 @@ body::before {
 }
 
 header {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 100;
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-    background: transparent;
 }
 
 .header-menu {
@@ -66,7 +77,8 @@ header {
     display: flex;
     flex-direction: column;
     text-align: right;
-    margin-right: 20px;
+    margin: 0 20px 0 0;
+    padding: 0;
     list-style: none;
     gap: 20px;
 }
@@ -93,6 +105,7 @@ header {
     text-decoration: none;
     color: var(--font-color);
     font-size: 0.7rem;
+    white-space: nowrap;
     transition: color 250ms;
 }
 
@@ -112,13 +125,18 @@ header {
 }
 
 #logo > span {
+    display: inline-block;
+    position: relative;
     padding: 6px;
     user-select: none;
 }
 
 #logo-span::after {
-    display: block;
     content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-bottom: solid 3px var(--light-green);
     transform: scaleX(0);
     transform-origin: 0% 50%;
@@ -132,6 +150,19 @@ header {
 
 #logo > span:hover {
     cursor: pointer;
+}
+
+header.light-header #logo,
+header.light-header .header-menu > nav > ul > li > span {
+    color: var(--background-color);
+}
+
+header.light-header .header-menu > nav > ul > li > span:hover {
+    color: var(--dark-cyan);
+}
+
+header.light-header #logo-span::after {
+    border-bottom-color: var(--dark-cyan);
 }
 
 /* -------- */
@@ -161,12 +192,15 @@ header {
 
 #home-img {
     max-width: 25%;
+    max-height: 55vh;
     height: auto;
+    width: auto;
     user-select: none;
 }
 
 #home-img {
-    margin-top: 50px;
+    display: block;
+    margin: 40px auto 0;
     box-shadow: 10px 10px var(--dark-green);
 }
 
@@ -451,4 +485,148 @@ header {
         opacity: 1;
     }
 
+}
+
+/* ------------------ */
+/* Scroll Dots (mobile categories indicator) */
+/* ------------------ */
+.scroll-dots {
+    display: none;
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.scroll-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    transition: background 0.2s;
+}
+
+.scroll-dots .dot.active {
+    background: #ffffff;
+}
+
+/* ------------------ */
+/* Mobile Responsive  */
+/* ------------------ */
+@media (max-width: 700px) {
+    html {
+        font-size: 20px;
+    }
+
+    header {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 0 10px;
+    }
+
+    #logo > span {
+        padding-bottom: 14px;
+    }
+
+    #logo {
+        display: block;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    .header-menu {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .header-menu ul {
+        flex-direction: row;
+        justify-content: center;
+        margin-right: 0;
+        gap: 24px;
+    }
+
+    .header-menu > nav > ul > li > span {
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+    }
+
+    #logo-span::after {
+        transform: scaleX(1);
+    }
+
+    .header-menu li:nth-child(1),
+    .header-menu li:nth-child(2),
+    .header-menu li:nth-child(3) {
+        animation: none;
+    }
+
+    #home-img {
+        max-width: 55%;
+        max-height: 42vh;
+        margin: 70px auto 0;
+    }
+
+    #home-main {
+        bottom: 25px;
+    }
+
+    #home-main > p {
+        font-size: 0.85rem;
+        padding: 0 25px;
+    }
+
+    .about {
+        flex-direction: column;
+        padding: 20px 20px 60px;
+        gap: 1.2rem;
+    }
+
+    #about-img {
+        max-height: 45vh;
+        width: 85%;
+    }
+
+    .about p {
+        font-size: 0.85rem;
+        padding: 0 10px;
+    }
+
+    .portfolio,
+    .portfolio-photography {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .portfolio-item {
+        flex: 0 0 100vw;
+        width: 100vw;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    .portfolio-item img {
+        aspect-ratio: auto;
+    }
+
+    .scroll-dots {
+        display: flex;
+        position: fixed;
+    }
+
+    #portfolio-images-list {
+        grid-template-columns: 1fr;
+    }
 }
