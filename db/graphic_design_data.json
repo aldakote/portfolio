@@ -1,42 +1,42 @@
 [
   {
-    "description": "Album Cover Inspiration",
     "extension": "jpg",
+    "description": "Album Cover Inspiration",
     "id": "Livadi-2020-page-001",
     "position": 0,
     "title": "The New Abnormal"
   },
   {
-    "description": "Album Cover Inspiration",
     "extension": "jpg",
+    "description": "Album Cover Inspiration",
     "id": "Pelion-2020-page-001",
     "position": 1,
     "title": "Soft Sunny Afternoon"
   },
   {
-    "description": "Album Cover Inspiration",
     "extension": "jpg",
+    "description": "Album Cover Inspiration",
     "id": "WATERMELON SUGAR-page-001",
     "position": 2,
     "title": "Watermelon Sugar"
   },
   {
-    "description": "Zoe",
     "extension": "jpg",
+    "description": "Zoe",
     "id": "cage1",
     "position": 3,
     "title": "Cage of Flesh"
   },
   {
-    "description": "Skating Project",
     "extension": "jpg",
+    "description": "Skating Project",
     "id": "concrete3",
     "position": 4,
     "title": "Concrete Waves"
   },
   {
-    "description": "2022",
     "extension": "jpg",
+    "description": "2022",
     "id": "cryy2y",
     "position": 5,
     "title": "self-portrait"
@@ -110,5 +110,12 @@
     "id": "949cc987-12bd-41c5-aa16-1ff91a54d49e",
     "position": 15,
     "title": "TAN"
+  },
+  {
+    "description": "",
+    "extension": "jpg",
+    "id": "2f977fee-58b3-404b-a7e8-a3e807fc2db9",
+    "position": 15,
+    "title": "no one is watching"
   }
 ]
